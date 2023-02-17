@@ -1,0 +1,27 @@
+[
+    {
+        "name":"abdul",
+        "phone":"wahab",
+        "email":"aw@gmail.com"
+    },
+    {
+        "firstName":"ahmad",
+        "lastName":"ali",
+        "email":"ahmadali@gmail.com"
+    },
+    {
+        "firstName":"usman",
+        "lastName":"khan",
+        "email":"usmankhan@gmail.com"
+    },
+    {
+        "firstName":"abrar",
+        "lastName":"abbas",
+        "email":"abrarabbas@gmail.com"
+    },
+    {
+        "firstName":"salman",
+        "lastName":"sandhu",
+        "email":"salman@gmail.com"
+    }
+]

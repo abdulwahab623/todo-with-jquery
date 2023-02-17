@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <title>lecture 2</title>
+    <style>
+        body {
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            line-height: 1.5em;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 6px #000 solid;
+            margin-bottom: 10px;
+        }
+
+        #comtainer {
+            width: 90%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        #bt {
+            background: orange;
+            cursor: pointer;
+        }
+
+        #btt {
+            background: rgb(185, 238, 79);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>JQuery Crash Course</h1>
+    </header>
+    <div id="container">
+        <h3>Mouse Events</h3>
+        <button id="btn1">Hide Button </button>
+        <button id="btn2">Show Button </button>
+        <p id="para1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam architecto eligendi assumenda
+            voluptas molestiae at nobis sequi culpa repellendus aut voluptate magni animi molestias, ipsa minima
+            laboriosam voluptates. Quidem, quia.</p>
+        <hr>
+        <form id="form">
+            <label>Name</label><br>
+            <input type="text" id="name" name="name">
+            <br>
+            <label>Email</label><br>
+            <input type="email" id="email" name="name">
+            <br>
+            <label>Gender</label><br>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script>
+        // if we use script tag in head tag then we use document.ready to run the code 
+        //    $(document).ready(function(){
+        //     $('#btn1').click(function(){
+        //     alert('button 1 clicked');
+        //    });});
+
+
+        //click events
+        // $('#btn1').click(function () {
+        // //   $('#para1').hide();
+        // $('#para1').toggle();
+        // });
+
+        // $('#btn2').on("click", function () {
+        //     $('#para1').show();  
+        // });
+
+        // $('#btn1').dblclick(function(){
+        //     $('#para1').toggle();
+        // })
+        // $('#btn2').hover(function(){
+        //     $('#para1').toggle();
+        // })
+        // $('#btn2').on('mouseenter', function(){
+        //     $('#para1').toggle();
+        // })
+        // $('#btn2').on('mouseleave', function(){
+        //     $('#para1').toggle();
+        // })
+
+        // $('#btn2').on('mousedown', function(){
+        //     $('#para1').toggle()
+        // })
+
+        // $('#btn1').click(function(e){
+        //    // alert(e.currentTarget.id);
+        //    alert(e.currentTarget.innerHTML);
+        // })
+
+        //mouse movement 
+        // $('#btn2').on('mousemove',function(e){
+        //     console.log('coords: Y:'+ e.clientY +"X: "+e.clientX);
+        // })
+
+        //focus event
+        // $('input').focus(function(){
+        //     //alert('Focus');
+        //     $('input#name').css('background','grey')
+        //  //   $(this).css('background','grey') //it select all input 
+        // })
+        $('input').blur(function () {
+            //alert('Focus');
+            $('input#name').css('background', 'green')
+            //   $(this).css('background','grey') //it select all input 
+        })
+
+        $('input').keyup(function (e) {
+            //alert('Focus');
+            //  $('input#name').css('background','green')
+            //   $(this).css('background','grey') //it select all input 
+            //  console.log('keyup')
+            console.log(e.target.value)// give value what we type
+        })
+
+        $('select#gender').change(function (e) {
+            alert("changed")
+            console.log(e.target.value)
+        })
+        $('#form').submit(function (e) {
+            e.preventDefault()
+            var name = $('input#name').val()
+            console.log(name);
+
+        })
+
+    </script>
+</body>
+
+</html>

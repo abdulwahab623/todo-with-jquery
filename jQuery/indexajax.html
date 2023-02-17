@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <title>ajax</title>
+    <style>
+        body {
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            line-height: 1.5em;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px #000 solid;
+            margin-bottom: 10px;
+        }
+
+        #comtainer {
+            width: 90%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        #bt {
+            background: orange;
+            cursor: pointer;
+        }
+
+        #btt {
+            background: rgb(185, 238, 79);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>JQuery Crash Course | Ajax</h1>
+    </header>
+    <div id="container">
+        <div id="result"></div>
+        <ul id="users"></ul>
+        <hr>
+        <h3>Add Post</h3>
+        <form id="postForm" action="https://jsonplaceholder.typicode.com/posts">
+            <input type="text" id="name" placeholder="Enter your name"><br>
+            <input type="number" id="phone" placeholder="Enter your phone"><br>
+            <input type="email" id="email" placeholder="Enter your @mail">
+            <textarea placeholder="Body" id="body"></textarea>
+            <button type="submit" value="Submit">submit data</button>
+        </form>
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+                $('#result').load('test.html', function(responseTxt, statusText, xhr){
+                    if(statusTxt == "success"){
+                        alert('It went fine');
+                    } else if (statusTxt == "error"){
+                        alert("Error: "+xhr.statusText);
+                    }
+                }); //load data from other html file
+
+
+               // by get method
+                $.get('test.html', function(data){
+                    $('#result').html(data);
+                })
+
+
+               // get from api 
+                $.getJSON('users.json', function(data){
+                    $.each(data,function(i, user){
+                       $('ul#users').append('<li>' + user.firstName + '</li>')
+                    })
+                })
+
+
+               // get Api from google api from url
+                $.ajax({
+                    method:'Get',
+                    url: 'https://jsonplaceholder.typicode.com/posts',
+                    dataType: 'json'
+                }).done(function (data) { //call back function
+                    console.log(data);
+                    $.map(data, function (post, i) {
+                        $('#result').append('<h2>' + post.id + '</h2><h4>' + post.title + '</h4><p>' + post.body + '</p>')
+                    })
+                }) 
+
+            $('#postForm').submit(function (e) {
+                e.preventDefault();
+                //get input field val 
+                var name = $('#name').val();
+                var phone = $('#phone').val();
+                var email = $('#email').val();
+
+                //making ajax call after this received input data
+                var url = $(this).attr('action');
+
+                $.post(url,
+                    {
+                        name: name,
+                        phone: phone,
+                        email: email
+                    }).done(function (data) {
+                        console.log('post Saved');
+                        console.log(data);
+                    })
+            });
+        });
+    </script>
+</body>
+
+</html>

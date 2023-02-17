@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <title>Effect & Animate </title>
+    <style>
+        body {
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f4f4;
+            line-height: 1.5em;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 6px #000 solid;
+            margin-bottom: 10px;
+        }
+
+        #comtainer {
+            width: 90%;
+            margin: auto;
+            padding: 10px;
+        }
+
+        #btnFadeOut {
+            background: orange;
+            cursor: pointer;
+        }
+
+        #btnFadeIn {
+            background: rgb(185, 238, 79);
+            cursor: pointer;
+        }
+
+        #btnFadeTog {
+            background: rgb(30, 177, 187);
+            cursor: pointer;
+        }
+
+        #box {
+            background: #333;
+            color: #fff;
+            width: 500px;
+            height: 90px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        #box2 {
+            background: red;
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1 id="tittle">JQuery Crash Course</h1>
+    </header>
+    <div id="container">
+        <button id="btnFadeOut">Fade Out</button>
+        <button id="btnFadeIn">Fade In</button>
+        <button id="btnFadeTog">Fade Toggle</button>
+        <button id="btnTitle">Show Title</button>
+        <button id="btnSlideUp">Slide Up</button>
+        <button id="btnSlideDown">Slide Down</button>
+        <button id="btnSlideTog">Slide Toggle</button>
+        <button id="btnStop">Stop</button>
+
+        <hr>
+
+        <div id="box">
+            <h1>hello Wahab :)</h1>
+        </div>
+
+        <hr>
+        <button id="moveRight">Move right</button>
+        <button id="moveLeft">Move Left</button>
+
+        <button id="moveAround">Move Around</button>
+        <div id="box2"></div>
+
+    </div> <!-- main con-->
+
+
+    <script>
+        $(document).ready(function () {
+            $('#btnFadeOut').click(function () {
+                $('#box').fadeOut(2000, function () {    //function in dunction to change  button text after  fade out
+                    $('#btnFadeOut').text('Its Gone');
+                })
+            })
+            //fade In 
+            $('#btnFadeIn').click(function () {
+                $('#box').fadeIn(5000) //we can set time
+            })
+            //fade toggle
+            $('#btnFadeTog').click(function () {
+                $('#box').fadeToggle(2000)
+            })
+            $('#btnTitle').click(function () {
+                $("#tittle").fadeToggle(4000)
+            })
+
+            $('#btnSlideDown').click(function () {
+                $('#box').slideDown(1000) //we can set time
+            })
+
+            $('#btnSlideUp').click(function () {
+                $('#box').slideUp(1000) //we can set time
+            })
+
+            $('#btnSlideTog').click(function () {
+                $('#box').slideToggle(1000) //we can set time
+            })
+
+            $('#btnStop').click(function () {
+                $('#box').stop();
+            });
+
+            $('#moveRight').click(function () {
+                $('#box2').animate({
+                    left: 500,
+                    height: '300px',
+                    width: '300px',
+                    opacity: '0.5'
+                });
+            });
+
+            $('#moveLeft').click(function () {
+                $('#box2').animate({
+                    left: 0,
+                    height: '100px',
+                    width: '100px',
+                    opacity: '1'
+                });
+            });
+
+            $('#moveAround').click(function () {
+                var box = $('#box2');
+
+                // left ko jyega
+                box.animate({
+                    left: 300,
+                    height: '150px',
+                    width: '150px',
+                    opacity: '0.7'
+                }, 3000);
+
+                //left ja ky nichay aye ga 
+                box.animate({
+                    top: 300,
+                    height: '200px',
+                    width: '200px',
+                }, 2000);
+
+                //secondlat left wapis
+                box.animate({
+                    left: 0,
+                    top: 300
+                }, 1000);
+
+                //lastup 
+                box.animate({
+                    left: 0,
+                    top: 0,
+                    height: '100px',
+                    width: '100px',
+                    opacity: '1'
+                }, 3000);
+            })
+        });
+
+    </script>
+</body>
+
+</html>
